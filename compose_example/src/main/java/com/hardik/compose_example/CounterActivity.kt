@@ -20,8 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hardik.compose_example.ui.theme.PlaygroundTheme
 
-class ComposeLifeCycleActivity : ComponentActivity() {
-    private val TAG = ComposeLifeCycleActivity::class.simpleName
+class CounterActivity : ComponentActivity() {
+    private val TAG = CounterActivity::class.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
