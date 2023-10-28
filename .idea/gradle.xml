@@ -7,15 +7,18 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/compose" />
+            <option value="$PROJECT_DIR$/compose_base" />
             <option value="$PROJECT_DIR$/compose_example" />
+            <option value="$PROJECT_DIR$/compose_utils" />
             <option value="$PROJECT_DIR$/design_pattern" />
             <option value="$PROJECT_DIR$/dsa" />
             <option value="$PROJECT_DIR$/general" />
             <option value="$PROJECT_DIR$/hilt" />
+            <option value="$PROJECT_DIR$/mysoothee" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -46,5 +46,4 @@ fun width(node: Node): Int {
     return width
 }
 
-
 data class Node(val data: Int, var left: Node? = null, var right: Node? = null)

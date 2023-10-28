@@ -1,4 +1,4 @@
-package com.hardik.compose_example.ui.theme
+package com.compose.utils.theme
 
 import android.app.Activity
 import android.os.Build
