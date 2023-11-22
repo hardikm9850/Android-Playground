@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Playground</string>
+    <string name="error_no_domain_found">" No domain\n"</string>
+    <string name="error_email_too_short">Email is too short\n</string>
+    <string name="success">\n</string>
+    <string name="error_no_numeric_in_password">no numeric found\n\n\n</string>
+    <string name="error_password_too_short">password too short</string>
 </resources>

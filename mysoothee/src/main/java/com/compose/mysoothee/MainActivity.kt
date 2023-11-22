@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +19,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -36,7 +43,28 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.compose.mysoothee.ui.theme.PlaygroundTheme2
-import com.compose.utils.theme.PlaygroundTheme
+
+// ----------- Data ------------
+
+val bodyDrawables = intArrayOf(
+    R.drawable.ab1_inversions,
+    R.drawable.ab2_quick_yoga,
+    R.drawable.ab3_stretching,
+    R.drawable.ab4_tabata,
+    R.drawable.ab5_hiit,
+    R.drawable.ab6_pre_natal_yoga,
+)
+
+val bodyTitleList = intArrayOf(
+    R.string.ab1_inversions,
+    R.string.ab2_yoga,
+    R.string.ab3_stretching,
+    R.string.ab4_tobata,
+    R.string.ab5_hilt,
+    R.string.ab6_natal_yoga,
+)
+
+// ----------- Data -----------
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +76,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    SearchBar()
+                    Content()
                 }
             }
         }
@@ -58,23 +86,25 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    PlaygroundTheme {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+    PlaygroundTheme2 {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background,
         ) {
-            SearchBar()
-            Spacer(modifier = Modifier.size(height = 10.dp, width = 0.dp))
-            AlignYourBodyElement(
-                text = R.string.ab1_inversions,
-                drawable = R.drawable.ab1_inversions,
-                modifier = Modifier.padding(8.dp),
-            )
-            FavoriteCollectionCard(
-                text = R.string.fc2_nature_meditations,
-                drawable = R.drawable.fc2_nature_meditations,
-                modifier = Modifier,
-            )
+            Content()
         }
+    }
+}
+
+@Composable
+fun Content() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        SearchBar()
+        Spacer(modifier = Modifier.size(height = 10.dp, width = 0.dp))
+        AlignYourBodyRow()
+        FavoriteCollectionsGrid()
     }
 }
 
@@ -99,6 +129,30 @@ fun SearchBar(
             focusedContainerColor = MaterialTheme.colorScheme.surface,
         ),
     )
+}
+
+@Composable
+fun AlignYourBodyRow(
+    modifier: Modifier = Modifier,
+) {
+    val alignYourBodyData = mutableListOf<AlignYourBodyData>()
+    for (i in 0..5) {
+        alignYourBodyData.add(
+            AlignYourBodyData(
+                drawable = bodyDrawables[i],
+                text = bodyTitleList[i],
+            ),
+        )
+    }
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+    ) {
+        items(alignYourBodyData) { item ->
+            AlignYourBodyElement(item.drawable, item.text)
+        }
+    }
 }
 
 @Composable
@@ -154,6 +208,32 @@ fun FavoriteCollectionCard(
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
+        }
+    }
+}
+
+@Composable
+fun FavoriteCollectionsGrid(
+    modifier: Modifier = Modifier,
+) {
+    val favoriteCollectionsData = mutableListOf<AlignYourBodyData>()
+    for (i in 0..5) {
+        favoriteCollectionsData.add(
+            AlignYourBodyData(
+                drawable = bodyDrawables[i],
+                text = bodyTitleList[i],
+            ),
+        )
+    }
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        modifier = modifier.heightIn(max = 160.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+    ) {
+        items(favoriteCollectionsData) { item ->
+            FavoriteCollectionCard(item.drawable, item.text, Modifier.height(80.dp))
         }
     }
 }

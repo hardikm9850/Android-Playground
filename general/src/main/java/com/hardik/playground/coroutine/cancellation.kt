@@ -9,20 +9,20 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.yield
 
-fun main(args: Array<String>) = runBlocking{
+fun main(args: Array<String>) = runBlocking {
     var child1: Job? = null
 
     coroutineScope {
         val job = GlobalScope.launch {
             child1 = launch {
-                repeat(1000){
+                repeat(1000) {
                     Thread.sleep(1000)
                     print("1")
                     yield()
                 }
             }
 
-            repeat(1000){
+            repeat(1000) {
                 delay(1000)
                 print("0")
             }

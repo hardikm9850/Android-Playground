@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">MySoothee</string>
     <string name="placeholder_search">Search</string>
-    <string name="ab1_inversions">Inversions\n</string>
+    <string name="ab1_inversions">Inversions</string>
+    <string name="ab2_yoga">Yoga</string>
+    <string name="ab3_stretching">Stretching</string>
+    <string name="ab4_tobata">Tobata</string>
+    <string name="ab5_hilt">Hilt</string>
+    <string name="ab6_natal_yoga">Natal Yoga</string>
     <string name="fc2_nature_meditations">Nature meditations</string>
 </resources>
