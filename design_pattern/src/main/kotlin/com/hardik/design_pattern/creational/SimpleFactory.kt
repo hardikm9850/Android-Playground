@@ -7,29 +7,43 @@ package com.hardik.design_pattern.creational
  */
 
 fun main() {
-    WoodenFactory.makeDoor(200f, 200f)
+    val chair = WoodenFactory.createProduct(WoodenFactory.ProductType.CHAIR)
+    val table = WoodenFactory.createProduct(WoodenFactory.ProductType.TABLE)
+
+    println(chair.getDescription())
+    println(table.getDescription())
 }
 
-interface Door {
-    fun getWidth(): Float
-    fun getHeight(): Float
+// Interface for wooden products
+interface WoodenProduct {
+    fun getDescription(): String
 }
 
-class WoodenDoor(private val width: Float, private val height: Float) : Door {
-    override fun getWidth(): Float {
-        return width
+// Concrete implementation of WoodenProduct: Chair
+class Chair : WoodenProduct {
+    override fun getDescription(): String {
+        return "This is a wooden chair."
+    }
+}
+
+// Concrete implementation of WoodenProduct: Table
+class Table : WoodenProduct {
+    override fun getDescription(): String {
+        return "This is a wooden table."
+    }
+}
+
+// Factory for creating wooden products
+object WoodenFactory {
+    enum class ProductType {
+        CHAIR,
+        TABLE
     }
 
-    override fun getHeight(): Float {
-        return height
-    }
-}
-
-class WoodenFactory {
-    companion object {
-        fun makeDoor(width: Float, height: Float): WoodenDoor {
-            return WoodenDoor(width, height)
+    fun createProduct(type: ProductType): WoodenProduct {
+        return when (type) {
+            ProductType.CHAIR -> Chair()
+            ProductType.TABLE -> Table()
         }
     }
-
 }
