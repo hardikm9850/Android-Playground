@@ -1,4 +1,4 @@
-package com.hardik.coroutines_deepdive.part_2.exceptions
+package com.hardik.coroutines_deepdive.part_2.exceptions.supervisor_job
 
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob

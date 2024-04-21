@@ -1,10 +1,18 @@
-package com.hardik.coroutines_deepdive.part_2.exceptions
+package com.hardik.coroutines_deepdive.part_2.exceptions.supervisor_job
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+
+// Supervisor Job overrides childCancelled method and returns false indicating that the parent coroutine will ignore any
+// exception raised by it's children
+/**
+ *  private class SupervisorJobImpl(parent: Job?) : JobImpl(parent) {
+ *     override fun childCancelled(cause: Throwable): Boolean = false
+ * }
+ */
 
 fun main(): Unit = runBlocking {
     val scope = CoroutineScope(SupervisorJob())
